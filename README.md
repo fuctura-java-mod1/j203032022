@@ -1,7 +1,5 @@
 ## Aula 2
 
-* Abrimos uma conexão com o SGBD da Oracle
-
 * Utilizando o DriverManager e a classe Connection para abrir uma conexão:
 
 <pre><code>
@@ -11,8 +9,6 @@
 		
 	Connection conexao = DriverManager.getConnection(URL, usuario, senha);
 </code></pre>
-
-* Inserimos os primeiros registros
 
 - Utilizamos a classe PreparedStatement para inserir 1 registro fixo:
 
