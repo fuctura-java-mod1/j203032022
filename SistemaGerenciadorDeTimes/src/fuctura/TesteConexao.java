@@ -2,8 +2,10 @@ package fuctura;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import fuctura.dao.JogadorDAO;
+import fuctura.model.Jogador;
 
 public class TesteConexao {
 
@@ -13,19 +15,29 @@ public class TesteConexao {
 			//URL, USUARIO e SENHA
 			Connection minhaConexao = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", "fuctura", "123");
 																		  //1, 2, 3	
-			String sql = "insert into jogador(nome, idade, camisa) values (?, ?, ?)";
+			JogadorDAO dao = new JogadorDAO();
 			
-			PreparedStatement ps = minhaConexao.prepareStatement(sql);
-		
-			//usar o scanner pra capturar os dados digitados pelo o usuário
-		
-			ps.setString(1, "Messi");
-			ps.setInt(2, 33);
-			ps.setInt(3, 10);
+			String nome = "Denis Marques";
+			int idade = 45;
+			int camisa = 10;
 			
-			ps.execute();
+			Jogador j1 = new Jogador();
+			j1.setNome("Denis Marques");
+			j1.setIdade(45);
+			j1.setCamisa(10);
 			
-			System.out.println("Resgistro Inserido Com Sucesso!");
+			dao.salvar(minhaConexao, j1);
+			
+			nome = "Cristiano Ronaldo";
+			idade = 33;
+			camisa = 10;
+
+			Jogador j2 = new Jogador();
+			j2.setNome("CR7");
+			j2.setIdade(33);
+			j2.setCamisa(10);
+			
+			dao.salvar(minhaConexao, j2);
 		
 		} catch (SQLException e) {
 			System.out.println("Ocorreu um problema ao acessar o Banco de Dados");
