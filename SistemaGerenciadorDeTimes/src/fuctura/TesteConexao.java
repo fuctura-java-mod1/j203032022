@@ -33,12 +33,14 @@ public class TesteConexao {
 			camisa = 10;
 
 			Jogador j2 = new Jogador();
-			j2.setNome("CR7");
-			j2.setIdade(33);
-			j2.setCamisa(10);
+			j2.setNome(nome);
+			j2.setIdade(idade);
+			j2.setCamisa(camisa);
 			
 			dao.salvar(minhaConexao, j2);
 		
+			dao.obterTodos(minhaConexao);
+			
 		} catch (SQLException e) {
 			System.out.println("Ocorreu um problema ao acessar o Banco de Dados");
 			e.printStackTrace();
