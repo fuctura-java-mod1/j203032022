@@ -73,7 +73,48 @@ public class JogadorDAO {
 		return jogadoresDaMinhaTabela;
 	}
 	
-	public void excluir() {
+	public void excluir(Connection conexao, Jogador jogadorQueEuQueroExcluir) {
+															  //1
+		String comandoSQL = "delete from jogador where codigo = ?";
+		
+		int chavePrimaria = jogadorQueEuQueroExcluir.getCodigo();
+		
+		try {
+			
+			PreparedStatement ps = conexao.prepareStatement(comandoSQL);
+			
+			ps.setInt(1, chavePrimaria);
+			
+			ps.execute();			
+			
+		} catch (SQLException e) {
+			System.out.println("Não foi possível excluir o jogador");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void atualizar(Connection conexao, Jogador jogadorQueEuQueroAtualizar) {
+		try {
+														//1          //2          //3    //4       
+			String comandoSQL = "UPDATE jogador SET nome = ?, idade = ?, camisa = ? where codigo = ?;";
+			
+			PreparedStatement ps = conexao.prepareStatement(comandoSQL);
+
+			ps.setString(1, jogadorQueEuQueroAtualizar.getNome());
+			
+			ps.setInt(2, jogadorQueEuQueroAtualizar.getIdade());
+			
+			ps.setInt(3, jogadorQueEuQueroAtualizar.getCamisa());
+			
+			ps.setInt(4, jogadorQueEuQueroAtualizar.getCodigo());
+			
+			ps.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
