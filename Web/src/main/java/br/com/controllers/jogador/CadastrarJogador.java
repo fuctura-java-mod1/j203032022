@@ -2,6 +2,7 @@ package br.com.controllers.jogador;
 
 import java.io.IOException;
 
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.model.Jogador;
+import br.com.util.JPAUtil;
 
 /**
  * Servlet implementation class JogadorCadastrar
@@ -33,21 +35,23 @@ public class CadastrarJogador extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Recebi os dados digitados na página
+		//Os dados chegam sempre como String
 		String nome  = request.getParameter("nome");
 		String idade = request.getParameter("idade");
+		String camisa = request.getParameter("camisa");
 				
-		long id = ListarJogador.jogadores.size(); //pego o último elemento da lista
+		System.out.println("Nome do jogador: " + nome);
+		System.out.println("Idade do jogador: " + idade);
+		System.out.println("Camisa do jogador: " + camisa);
+
 		
 		//crio um novo objeto jogador
 		Jogador novoJogador = new Jogador();
-		novoJogador.setId(id);
-		novoJogador.setNome(nome);
-		novoJogador.setIdade(Long.valueOf(idade));
 		
-		//salvo o jogador na lista
-		ListarJogador.jogadores.add(novoJogador);
+		//salvar o jogador no banco de dados
+		//EntityManagerFactory fabrica = JPAUtil.getEntityManagerFactory();
 		
 		response.sendRedirect("./listar");
 	}
-
 }

@@ -59,7 +59,7 @@ public class ListarJogador extends HttpServlet {
 		
 		JogadorDAO dao = new JogadorDAO();
 		try {
-			resultadoDaConsulta = dao.obterTodos(JPAUtil.getInstancia());
+			resultadoDaConsulta = dao.obterTodos(JPAUtil.getEntityManagerFactory());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

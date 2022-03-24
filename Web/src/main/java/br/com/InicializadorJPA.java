@@ -31,14 +31,9 @@ public class InicializadorJPA implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent arg0)  { 
-         // TODO Auto-generated method stub
-    	System.out.println("contextInitialized");
-    	try {
-			JPAUtil.getInstancia();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	System.out.println("Carregando o JPA");
+		//Remover o comentário da linha de baixo quando finalizar a configuração do JPA
+    	//JPAUtil.getInstancia();
     }
 	
 }

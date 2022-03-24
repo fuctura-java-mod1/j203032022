@@ -15,10 +15,15 @@
 	</div>
 	<div>
 		<form action="../jogador/cadastrar" method="post">
-			<label for="nome">Nome:</label><br> <input type="text" id="nome"
-				name="nome" placeholder="Nome"><br> <label for="idade">Idade:</label><br>
+			<label for="nome">Nome:</label><br> 
+			<input type="text" id="nome" name="nome" placeholder="Nome"><br> 
+				
+			<label for="idade">Idade:</label><br>
 			<input type="text" id="idade" name="idade" placeholder="Idade"><br>
-
+			
+			<label for="camisa">Camisa:</label><br>
+			<input type="text" id="camisa" name="camisa" placeholder="Camisa"><br>
+			
 			<br> <input type="submit" value="Submit">
 		</form>
 	</div>

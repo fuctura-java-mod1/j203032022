@@ -1,30 +1,29 @@
 package br.com.fuctura;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
+import br.com.fuctura.dao.FilmeDAO;
 import br.com.fuctura.model.Filme;
 
 public class TesteConexaoHibernate {
 
 	public static void main(String[] args) {
-		
-		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("Fuctura-PU");
-		EntityManager gerenciador = fabrica.createEntityManager();
 
-		EntityTransaction transacao = gerenciador.getTransaction();
+		Filme novoFilme = new Filme();
+
+		novoFilme.setNome("Vingadores");
+		novoFilme.setDuracao(120);
+		novoFilme.setLinkyt("yt/7hdyu");
+
+		FilmeDAO dao = new FilmeDAO();
+		dao.salvar(novoFilme);
+
+		dao.excluir(novoFilme);
+
+		Filme filmeEncontradoNaBase = dao.pesquisar(novoFilme);
 		
-		transacao.begin(); //comeco
-		
-		Filme novo = new Filme();
-		novo.setNome("Vingadores");
-		novo.setLinkyt("yt/huio1");
-		
-		gerenciador.persist(novo);
-		
-		transacao.commit(); //fim
+		if (filmeEncontradoNaBase != null) {
+			System.out.println("Duracao: " + filmeEncontradoNaBase.getDuracao());
+		}
+	
 	}
 
 }
