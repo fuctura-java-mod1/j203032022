@@ -3,10 +3,18 @@ package br.com.fuctura.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table( name = "TB_FILME" )
+@NamedQueries({
+	@NamedQuery(name = "Filme.findByClassificacao", 
+	query = "select f from Filme f where f.classificacao = :class"),
+	@NamedQuery(name = "findByIntervalo", 
+	query = " select f from Filme f where f.classificacao >= :menor AND f.classificacao <= :maior")
+})
 public class Filme {
 	@Id
 	private String linkyt;
