@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.dao.JogadorDAO;
 import br.com.model.Jogador;
-import br.com.util.JPAUtil;
 
 /**
  * Servlet implementation class JogadorListar

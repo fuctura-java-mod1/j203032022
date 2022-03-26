@@ -4,8 +4,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import br.com.util.JPAUtil;
-
 /**
  * Application Lifecycle Listener implementation class InitResources
  *
@@ -33,7 +31,7 @@ public class InicializadorJPA implements ServletContextListener {
     public void contextInitialized(ServletContextEvent arg0)  { 
     	System.out.println("Carregando o JPA");
 		//Remover o comentário da linha de baixo quando finalizar a configuração do JPA
-    	//JPAUtil.getInstancia();
+    	//JPAUtil.getEntityManagerFactory();
     }
 	
 }
