@@ -56,12 +56,7 @@ public class ListarJogador extends HttpServlet {
 		System.out.println("-- Listar Jogadores --");
 		List<Jogador> resultadoDaConsulta = getJogadoresEmMemoria();
 		
-		JogadorDAO dao = new JogadorDAO();
-		try {
-			resultadoDaConsulta = dao.obterTodos(JPAUtil.getEntityManagerFactory());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		//criar aqui o método de consulta
 		
 		request.setAttribute("jogadores", resultadoDaConsulta);
 		request.getRequestDispatcher("../pages/jogador/listar.jsp").forward(request, response);
