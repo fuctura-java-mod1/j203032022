@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import br.com.fuctura.dao.FilmeDAO;
+import br.com.fuctura.dto.NomeDuracaoDTO;
 import br.com.fuctura.model.Filme;
 
 public class TesteConexaoHibernate {
@@ -52,6 +53,18 @@ public class TesteConexaoHibernate {
 		for(Filme filme : resultado3) {
 			System.out.println("* Nome: " + filme.getNome());
 		}
+		
+		List<String> nomesDosfilmes = dao.obterTodosOsNomes();
+		for(String nomeDoFilme : nomesDosfilmes) {
+			System.out.println("* Nome: " + nomeDoFilme);
+		}
+		
+		List<NomeDuracaoDTO> resultadoUtilizandoDTO = dao.obterTodosOsNomesDTO();
+		for(NomeDuracaoDTO nomeDuracao : resultadoUtilizandoDTO) {
+			System.out.println("* Nome: " + nomeDuracao.getNome());
+			System.out.println("* Duracao: " + nomeDuracao.getDuracao());
+		}
+		
 	}
 
 }

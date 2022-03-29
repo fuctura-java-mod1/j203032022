@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import br.com.fuctura.dto.NomeDuracaoDTO;
 import br.com.fuctura.model.Filme;
 import br.com.fuctura.util.JPAUtil;
 
@@ -98,6 +99,28 @@ public class FilmeDAO {
 		consulta.setParameter("nome", nome);
 		
 		List<Filme> resultadoDaConsulta = consulta.getResultList();
+		
+		return resultadoDaConsulta;
+	}
+	
+	public List<String> obterTodosOsNomes(){
+		EntityManager gerenciador = fabrica.createEntityManager();
+		
+		TypedQuery<String> query = gerenciador
+				.createQuery("select nome, duracao from Filme f", String.class);
+		
+		List<String> resultadoDaConsulta = query.getResultList();
+		
+		return resultadoDaConsulta;
+	}
+	
+	public List<NomeDuracaoDTO> obterTodosOsNomesDTO(){
+		EntityManager gerenciador = fabrica.createEntityManager();
+		
+		TypedQuery<NomeDuracaoDTO> query = gerenciador
+		.createQuery("select new br.com.fuctura.dto.NomeDuracaoDTO(nome, duracao, classificacao) from Filme f", NomeDuracaoDTO.class);
+		
+		List<NomeDuracaoDTO> resultadoDaConsulta = query.getResultList();
 		
 		return resultadoDaConsulta;
 	}
