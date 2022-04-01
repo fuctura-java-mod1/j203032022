@@ -1,5 +1,6 @@
 package br.com.fuctura.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ public class Clube {
 	private int capacidade;
 	private String dataFundacao;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Time time;
 	
 	public Time getTime() {

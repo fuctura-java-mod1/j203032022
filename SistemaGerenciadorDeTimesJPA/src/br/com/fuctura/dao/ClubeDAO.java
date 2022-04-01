@@ -23,6 +23,7 @@ public class ClubeDAO {
 		
 		transacao.commit();
 		
+		gerenciador.close();
 	}
 	
 	

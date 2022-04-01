@@ -1,9 +1,13 @@
 package br.com.fuctura.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Time {
@@ -12,6 +16,19 @@ public class Time {
 	private int codigo;
 	private String nome;
 	private int qtdTitulos;
+
+	@OneToMany(cascade = CascadeType.PERSIST)
+	List<Jogador> jogadores;
+	
+
+	
+	public List<Jogador> getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(List<Jogador> jogadores) {
+		this.jogadores = jogadores;
+	}
 
 	public int getCodigo() {
 		return codigo;

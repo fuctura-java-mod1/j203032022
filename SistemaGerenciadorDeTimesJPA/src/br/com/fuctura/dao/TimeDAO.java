@@ -23,6 +23,8 @@ public class TimeDAO {
 		
 		transacao.commit();
 		
+		gerenciador.close();
+		
 	}
 	
 }

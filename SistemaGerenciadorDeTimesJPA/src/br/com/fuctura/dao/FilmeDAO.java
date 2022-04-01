@@ -107,7 +107,7 @@ public class FilmeDAO {
 		EntityManager gerenciador = fabrica.createEntityManager();
 		
 		TypedQuery<String> query = gerenciador
-				.createQuery("select nome, duracao from Filme f", String.class);
+				.createQuery("select nome from Filme f", String.class);
 		
 		List<String> resultadoDaConsulta = query.getResultList();
 		
@@ -121,6 +121,17 @@ public class FilmeDAO {
 		.createQuery("select new br.com.fuctura.dto.NomeDuracaoDTO(nome, duracao, classificacao) from Filme f", NomeDuracaoDTO.class);
 		
 		List<NomeDuracaoDTO> resultadoDaConsulta = query.getResultList();
+		
+		return resultadoDaConsulta;
+	}
+	
+	public List<Filme> obterTodos(){
+		EntityManager gerenciador = fabrica.createEntityManager();
+		
+		Query consulta = gerenciador.
+				createQuery("select f from Filme f");
+		
+		List<Filme> resultadoDaConsulta = consulta.getResultList();
 		
 		return resultadoDaConsulta;
 	}

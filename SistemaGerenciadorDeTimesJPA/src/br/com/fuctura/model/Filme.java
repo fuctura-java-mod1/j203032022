@@ -1,11 +1,22 @@
 package br.com.fuctura.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PostPersist;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import br.com.fuctura.util.AuditorFilme;
+import br.com.fuctura.util.GeneroEnum;
 
 @Entity
 @Table( name = "TB_FILME" )
@@ -15,6 +26,7 @@ import javax.persistence.Table;
 	@NamedQuery(name = "findByIntervalo", 
 	query = " select f from Filme f where f.classificacao >= :menor AND f.classificacao <= :maior")
 })
+@EntityListeners(AuditorFilme.class)
 public class Filme {
 	@Id
 	private String linkyt;
@@ -22,6 +34,41 @@ public class Filme {
 	private String nome;
 	private int duracao;
 	private int classificacao;
+	private LocalDate dataDeLancamento;
+	
+	@Enumerated(EnumType.STRING)
+	private GeneroEnum genero;
+	
+	public GeneroEnum getGenero() {
+		return genero;
+	}
+	public void setGenero(GeneroEnum genero) {
+		this.genero = genero;
+	}
+	@Transient
+	private String ignorar;
+	
+	@Lob
+	private byte[] imagemDoFilme;
+	
+	public String getIgnorar() {
+		return ignorar;
+	}
+	public void setIgnorar(String ignorar) {
+		this.ignorar = ignorar;
+	}
+	public byte[] getImagemDoFilme() {
+		return imagemDoFilme;
+	}
+	public void setImagemDoFilme(byte[] imagemDoFilme) {
+		this.imagemDoFilme = imagemDoFilme;
+	}
+	public LocalDate getDataDeLancamento() {
+		return dataDeLancamento;
+	}
+	public void setDataDeLancamento(LocalDate dataDeLancamento) {
+		this.dataDeLancamento = dataDeLancamento;
+	}
 	
 	public String getLinkyt() {
 		return linkyt;
@@ -47,4 +94,10 @@ public class Filme {
 	public void setClassificacao(int classificacao) {
 		this.classificacao = classificacao;
 	}
+	
+	@PostPersist
+	public void callback() {
+		System.out.println("Invocou o método de callback");
+	}
+
 }
